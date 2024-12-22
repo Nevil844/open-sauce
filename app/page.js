@@ -11,12 +11,12 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(false)
   const [currentQuery, setCurrentQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [isSearching, setIsSearching] = useState(false)
 
   useEffect(() => {
     // Fetch trending repositories on initial load
     const fetchTrendingRepos = async () => {
       try {
-        // More inclusive trending query
         const query = encodeURIComponent('stars:>500 created:>2024-01-01')
         const response = await fetch(`/api/search?q=${query}&sort=stars&page=1`)
         const data = await response.json()
@@ -38,6 +38,7 @@ export default function Home() {
   const handleSearch = (results) => {
     setSearchResults(results)
     setCurrentPage(1)
+    setIsSearching(true)
   }
 
   const handleLoadMore = async () => {
@@ -88,6 +89,7 @@ export default function Home() {
               projects={searchResults} 
               hasMore={hasMore}
               onLoadMore={handleLoadMore}
+              isSearching={isSearching}
             />
           </div>
         )}

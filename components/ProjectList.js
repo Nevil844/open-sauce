@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function ProjectList({ projects = [], hasMore, onLoadMore }) {
+export default function ProjectList({ projects = [], hasMore, onLoadMore, isSearching }) {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleLoadMore = async () => {
@@ -62,7 +62,7 @@ export default function ProjectList({ projects = [], hasMore, onLoadMore }) {
         ))}
       </div>
       
-      {hasMore && (
+      {isSearching && hasMore && (
         <div className="text-center mb-8">
           <button
             onClick={handleLoadMore}
