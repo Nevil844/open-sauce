@@ -46,10 +46,16 @@ export default function ProjectList({ projects = [], hasMore, onLoadMore }) {
                 </span>
               )}
               <span className="flex items-center gap-1">
-                <span>🍴</span> {project.forks_count.toLocaleString()}
+                <span>🍴</span> {project.forks_count.toLocaleString()} forks
               </span>
               <span className="flex items-center gap-1">
-                <span>👀</span> {project.watchers_count.toLocaleString()}
+                <span>👀</span> {project.watchers_count.toLocaleString()} watchers
+              </span>
+              <span className="flex items-center gap-1">
+                <span>📝</span> {project.open_issues_count} issues
+              </span>
+              <span className="flex items-center gap-1">
+                <span>🕒</span> {new Date(project.pushed_at).toLocaleDateString()}
               </span>
             </div>
           </div>
